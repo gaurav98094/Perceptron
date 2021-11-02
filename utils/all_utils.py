@@ -1,4 +1,4 @@
-
+import os
 import numpy as np
 import pandas as pd
 
@@ -11,6 +11,15 @@ import joblib
 
 
 def prepare_data(df):
+  """It is used to seperate the dependent and independent features
+
+  Args:
+      df (pd DataFrame): its a pandas dataset
+
+  Returns:
+      tuple: it returns tuples of dependent and independent variables
+  """
+
   X = df.drop("y", axis=1)
 
   y = df["y"]
@@ -18,6 +27,12 @@ def prepare_data(df):
   return X, y
 
 def save_model(model,filename):
+  """It saves the trained model
+
+  Args:
+      model (python object): trained model to
+      file_name (str): give the name with which u want to save
+  """
   model_dir='MODELS'
   os.makedirs(model_dir,exist_ok=True)
   filePath = os.path.join(model_dir,filename)
@@ -25,6 +40,13 @@ def save_model(model,filename):
 
 
 def save_plot(df, file_name, model):
+  """It is used to save the plot
+
+  Args:
+      df (pd DataFrame): Datset only 2D
+      file_name (str): give the path to save the plot
+      model (python object): modelname for which plot is to be created
+  """
   def _create_base_plot(df):
     df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
     plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
@@ -65,3 +87,5 @@ def save_plot(df, file_name, model):
   os.makedirs(plot_dir, exist_ok=True) # ONLY CREATE IF MODEL_DIR DOESN"T EXISTS
   plotPath = os.path.join(plot_dir, file_name) # model/filename
   plt.savefig(plotPath)
+
+
