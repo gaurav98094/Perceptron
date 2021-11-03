@@ -9,6 +9,8 @@ plt.style.use("fivethirtyeight")
 
 import joblib
 
+import logging
+
 
 def prepare_data(df):
   """It is used to seperate the dependent and independent features
@@ -19,13 +21,13 @@ def prepare_data(df):
   Returns:
       tuple: it returns tuples of dependent and independent variables
   """
-
+  logging.info("Preparing Data")
   X = df.drop("y", axis=1)
 
   y = df["y"]
+  logging.info("Data Prepared")
 
   return X, y
-
 def save_model(model,filename):
   """It saves the trained model
 
@@ -33,10 +35,13 @@ def save_model(model,filename):
       model (python object): trained model to
       file_name (str): give the name with which u want to save
   """
+
+  logging.info("Saving the Model")
   model_dir='MODELS'
   os.makedirs(model_dir,exist_ok=True)
   filePath = os.path.join(model_dir,filename)
   joblib.dump(model,filePath)
+  logging.info(f"Model saved at {filePath}")
 
 
 def save_plot(df, file_name, model):
@@ -47,6 +52,7 @@ def save_plot(df, file_name, model):
       file_name (str): give the path to save the plot
       model (python object): modelname for which plot is to be created
   """
+  logging.info(f"Saving the Plot")
   def _create_base_plot(df):
     df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
     plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
@@ -66,8 +72,7 @@ def save_plot(df, file_name, model):
 
     xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution), 
                            np.arange(x2_min, x2_max, resolution))
-    print(xx1)
-    print(xx1.ravel())
+    
     Z = classfier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
     Z = Z.reshape(xx1.shape)
     plt.contourf(xx1, xx2, Z, alpha=0.2, cmap=cmap)
@@ -88,4 +93,4 @@ def save_plot(df, file_name, model):
   plotPath = os.path.join(plot_dir, file_name) # model/filename
   plt.savefig(plotPath)
 
-
+  logging.info(f"Plot saved at {plotPath}")
