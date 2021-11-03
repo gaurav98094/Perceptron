@@ -5,11 +5,23 @@ $ ./tree-md .
 # Project Structure
 ```
 \---Perceptron
+    |   and.py
+    |   README.md
+    |   requirements.txt
+    |
     +---IMAGES
+    |       AND.png
+    |
     +---logs
+    |       running_logs.log
+    |
     +---MODELS
+    |       AND.model
+    |
     \---utils
-        \---__pycache__
+        |   all_utils.py
+        |   model.py
+        |   __init__.py
 ```
 
 ## Install Requirements
