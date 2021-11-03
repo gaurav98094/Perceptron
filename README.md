@@ -70,3 +70,7 @@ class Perceptron:
 
 ## PLOTS
 ![and plot](IMAGES/AND.png)
+
+## Reference - 
+[Python Documentation](https://packaging.python.org/tutorials/packaging-projects/)
+[Github Actions](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries)
