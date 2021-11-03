@@ -5,6 +5,7 @@ Returns:
 """
 
 import numpy as np
+import pandas as pd
 
 import logging
 # logging_str = " [ %(asctime)s:%(levelname)s:%(module)s ] : %(message)s"
